@@ -3,9 +3,9 @@ from ting_file_management.file_management import txt_importer
 
 def process(path_file, instance):
     for index in range(len(instance)):
-        if instance.search(index)['nome_do_arquivo'] == path_file:
+        if instance.search(index)["nome_do_arquivo"] == path_file:
             return None
-        
+
     list_set = sorted(set(txt_importer(path_file)))
 
     file_info = {
@@ -22,9 +22,14 @@ def process(path_file, instance):
 
 
 def remove(instance):
-    """Aqui irá sua implementação"""
+    try:
+        removed_file = instance.dequeue()
+        return print(
+            f"Arquivo {removed_file['nome_do_arquivo']} removido com sucesso\n"
+        )
+    except IndexError:
+        print("Não há elementos")
 
 
 def file_metadata(instance, position):
     """Aqui irá sua implementação"""
-
