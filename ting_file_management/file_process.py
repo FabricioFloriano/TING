@@ -1,4 +1,5 @@
 from ting_file_management.file_management import txt_importer
+import sys
 
 
 def process(path_file, instance):
@@ -6,7 +7,7 @@ def process(path_file, instance):
         if instance.search(index)["nome_do_arquivo"] == path_file:
             return None
 
-    list_set = sorted(set(txt_importer(path_file)))
+    list_set = txt_importer(path_file)
 
     file_info = {
         "nome_do_arquivo": path_file,
@@ -32,4 +33,11 @@ def remove(instance):
 
 
 def file_metadata(instance, position):
-    """Aqui irá sua implementação"""
+    try:
+        search = instance.search(position)
+        print(search)
+    except IndexError:
+        sys.stderr.write("Posição inválida")
+        return None
+
+    return None
